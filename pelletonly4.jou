@@ -1,0 +1,50 @@
+## /Applications/Cubit-13.2/Cubit.app/Contents/MacOS/cubitclx
+## Cubit Version 13.2
+## Cubit Build 47806
+## Revised 2012-04-02 15:41:15 -0600 (Mon, 02 Apr 2012)
+## Running 02/26/2013 11:29:42 AM
+## Command Options:
+## -warning = On
+## -information = On
+## -initfile /Users/spenbw/.cubit
+create cylinder radius 4.95 height {4.95*2*1.2}
+#volume 1 move 0 0 -0.5
+webcut volume 1 with cylinder radius 4.21 axis z
+webcut volume 2 with cylinder radius 4.1 axis z
+delete volume 2
+webcut volume all with plane yplane
+webcut volume all with plane xplane
+webcut volume all with cylinder radius 3 axis z
+merge all
+curve 115 134 148 117 interval 24
+curve 126 139 156 125 interval 52
+curve 112 130 160 146 interval 72
+curve 68 99 110 76 interval 72 #floor(11*0.5*pi)+1
+surface 85 92 115 102 scheme pave
+surface 78 90 108 100 scheme map
+mesh surface 85 92 115 102
+mesh surface 78 90 108 100
+curve 18 79 12 49 interval 20
+curve 52 86 91 60 51 85 93 62 interval 72 #floor(11*0.5*pi)+1
+surface 59 63 45 37 scheme map
+mesh surface 59 63 45 37
+#block 1 surface 37 59 63 45
+#block 1 name "clad"
+block 3 surface 85 92 115 102 78 90 108 100
+block 3 name "pellet_type_1"
+#block all element type QUAD8
+block all element type QUAD4
+sideset 2 curve 51 85 93 62
+sideset 5 curve 52 86 91 60
+sideset 7 curve 52 86 91 60
+sideset 9 curve 52 86 91 60
+sideset 10 curve 52 86 91 60
+sideset 8 curve 68 99 110 76
+sideset 9 curve 68 99 110 76
+nodeset 15 curve 12 148 156 126 115 18 #ysymm
+nodeset 16 curve 49 117 125 139 134 79 #xsymm
+nodeset 17 vertex 38
+nodeset 18 vertex 63
+nodeset 19 vertex 70
+volume all scale 0.001
+export mesh "pelletonly4.e" overwrite
