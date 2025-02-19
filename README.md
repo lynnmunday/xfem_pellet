@@ -9,7 +9,11 @@ combined-opt -i make_edge_crack.i --mesh-only
 The simulation is now ready to run:
 combined-opt -i xfem_crack_pelletonly.i
 
-This is the output available in the following report
+This produces the following output available in the below report:
+
+![stress](https://github.com/lynnmunday/xfem_pellet/blob/main/figures/stress.png)
+
+![temperature](https://github.com/lynnmunday/xfem_pellet/blob/main/figures/temperature.png)
 
 ```text
 @techreport{osti_2000030,
@@ -24,8 +28,4 @@ This is the output available in the following report
   month        = {06}}
 ```
 
-output versus field data:
 
-![9hr_flow](https://github.com/lynnmunday/xfem_pellet/blob/main/figures/stress.png)
-
-![9hr_temp](https://github.com/lynnmunday/xfem_pellet/blob/main/figures/temperature.png)
